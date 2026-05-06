@@ -1,0 +1,192 @@
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+} from "@/components/ui/navigation-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import { Menu } from "lucide-react";
+import { CgShoppingBag } from "react-icons/cg";
+import { BiHeart, BiSearch, BiUser } from "react-icons/bi";
+import { HEADER_LINKS, NAVIGATION_ITEMS } from "@/constants/header";
+import { NavigationItemProps, NavLink } from "@/types/layout";
+
+
+const ICON_SIZE = 20;
+const MOBILE_ICON_SIZE = 15;
+
+// Components
+const TopBar = () => (
+  <div className="hidden md:px-7 md:flex md:h-10 md:justify-between md:items-center md:border-b md:bg-gray-200/25 md:border-gray-400/50">
+    <Link href="/" className="font-bold mx-4 text-lg">
+      <Image
+        src="/header/top-logo.svg"
+        alt="Nike logo"
+        width={20}
+        height={20}
+        className="px-3 md:p-0"
+      />
+    </Link>
+    <TopBarLinks />
+  </div>
+);
+
+const TopBarLinks = () => (
+  <div className="flex flex-row-reverse gap-3">
+    {HEADER_LINKS.map((link, index) => (
+      <TopBarLink
+        key={link.title}
+        link={link}
+        isLast={index === HEADER_LINKS.length - 1}
+      />
+    ))}
+  </div>
+);
+
+const TopBarLink = ({ link, isLast }: { link: NavLink; isLast: boolean }) => (
+  <Link
+    href={link.href}
+    className={`text-gray-700 ${!isLast ? "border-l border-gray-400/50 pl-2" : ""}`}>
+    {link.title}
+  </Link>
+);
+
+const Logo = () => (
+  <div className="px-4 md:p-0">
+    <Link href="/" className="font-bold text-lg">
+      <Image src="/header/n-logo.svg" alt="Logo" width={60} height={60} />
+    </Link>
+  </div>
+);
+
+const DesktopNavigation = () => (
+  <nav className="hidden md:flex">
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <Link href="/">Home</Link>
+        </NavigationMenuItem>
+
+        {NAVIGATION_ITEMS.map((item) => (
+          <DesktopNavDropdown key={item.category} item={item} />
+        ))}
+
+        <NavigationMenuItem className="pr-4">
+          <Link href="/">Contact Us</Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <Link href="/">About Us</Link>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  </nav>
+);
+
+const DesktopNavDropdown = ({ item }: { item: NavigationItemProps }) => (
+  <NavigationMenuItem>
+    <NavigationMenuTrigger>{item.category}</NavigationMenuTrigger>
+    <NavigationMenuContent>
+      <div className="grid grid-cols-4 gap-2 p-6 w-[600px] border border-gray-300/30 bg-white">
+        {item.links.map((link) => (
+          <Link key={link.title} href={link.href}>
+            {link.title}
+          </Link>
+        ))}
+      </div>
+    </NavigationMenuContent>
+  </NavigationMenuItem>
+);
+
+const DesktopIcons = () => (
+  <div className="hidden md:flex md:gap-3 items-center">
+    <BiSearch size={ICON_SIZE} />
+    <BiHeart size={ICON_SIZE} />
+    <CgShoppingBag size={ICON_SIZE} />
+  </div>
+);
+
+const MobileMenu = () => (
+  <div className="md:hidden px-3 flex gap-5 items-center">
+    <MobileIcons />
+    <MobileSheet />
+  </div>
+);
+
+const MobileIcons = () => (
+  <div className="flex gap-2 items-center">
+    <BiSearch size={MOBILE_ICON_SIZE} />
+    <BiUser size={MOBILE_ICON_SIZE} />
+    <BiHeart size={MOBILE_ICON_SIZE} />
+    <CgShoppingBag size={MOBILE_ICON_SIZE} />
+  </div>
+);
+
+const MobileSheet = () => (
+  <Sheet>
+    <SheetTrigger asChild>
+      <Button variant="ghost" size="icon">
+        <Menu />
+      </Button>
+    </SheetTrigger>
+    <SheetContent side="right" className="w-[300px]">
+      <div className="flex flex-col gap-4 mt-6">
+        <MobileNavLink href="/">Home</MobileNavLink>
+
+        {NAVIGATION_ITEMS.map((item) => (
+          <MobileDropdown key={item.category} item={item} />
+        ))}
+
+        <MobileNavLink href="/">Contact Us</MobileNavLink>
+        <MobileNavLink href="/">About Us</MobileNavLink>
+        <MobileNavLink href="/">Sign in / Sign up</MobileNavLink>
+      </div>
+    </SheetContent>
+  </Sheet>
+);
+
+const MobileDropdown = ({ item }: { item: NavigationItemProps }) => (
+  <details>
+    <summary className="cursor-pointer">{item.category}</summary>
+    <div className="ml-4 mt-2 flex flex-col gap-2">
+      {item.links.map((link) => (
+        <MobileNavLink key={link.title} href={link.href}>
+          {link.title}
+        </MobileNavLink>
+      ))}
+    </div>
+  </details>
+);
+
+const MobileNavLink = ({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) => (
+  <Link href={href} className="cursor-pointer">
+    {children}
+  </Link>
+);
+
+// Main Component
+export default function Header() {
+  return (
+    <header className="container">
+      <TopBar />
+
+      <div className="md:px-7 flex items-center justify-between h-16">
+        <Logo />
+        <DesktopNavigation />
+        <DesktopIcons />
+        <MobileMenu />
+      </div>
+    </header>
+  );
+}
