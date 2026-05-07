@@ -6,3 +6,9 @@ export type SlideProps = {
     buttonText: string;
     buttonLink: string;
   };
+  export type CategoryLandingProps={
+    title: string,
+    buttonText: string,
+    image: string,
+    alt: string,
+  }

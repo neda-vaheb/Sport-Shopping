@@ -1,12 +1,14 @@
-import React from 'react'
-import HeroSection from '../fetures/landing/herosection/HeroSection'
+
+import HeroSection from "@/components/fetures/landing/HeroSection";
+import CategorySection from "@/components/fetures/landing/CategorySection";
 
 function Landing() {
   return (
     <main>
-      <HeroSection/>
+      <HeroSection />
+      <CategorySection />
     </main>
-  )
+  );
 }
 
-export default Landing
+export default Landing;

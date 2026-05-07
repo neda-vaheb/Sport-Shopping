@@ -33,25 +33,27 @@ const HeroSection: React.FC = () => {
         {slidesData.map((slide) => (
           <SwiperSlide key={slide.id}>
             {/* هر محتوایی که دوست دارید داخل اسلاید قرار دهید */}
-            <div className="relative h-[500px] w-full">
+            <div className="relative h-160 w-full">
               {/* تصویر پس‌زمینه */}
               <Image
                 width={1400}
-                height={500}
+                height={600}
                 src={slide.imageUrl}
                 alt={slide.title}
                 className="absolute inset-0 h-full w-full object-cover"
               />
               {/* متن و دکمه روی تصویر */}
               <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 text-white">
-                <Typography variant="h2" className="mb-4 text-4xl font-bold">
+                <Typography
+                  variant="h2"
+                  className="mb-4 text-4xl font-bold text-white">
                   {slide.title}
                 </Typography>
-                <Typography variant="p" className="mb-6 text-xl">
+                <Typography variant="p" className="mb-6 text-xl text-white">
                   {slide.description}
                 </Typography>
                 <Link href={slide.buttonLink}>
-                  <Button className="rounded-lg bg-white px-6 py-3 font-bold text-black transition hover:bg-gray-200">
+                  <Button className="rounded-lg bg-white px-6 py-3 font-bold text-gray-500 transition hover:bg-gray-200">
                     {slide.buttonText}
                   </Button>
                 </Link>
