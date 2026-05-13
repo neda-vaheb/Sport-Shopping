@@ -1,14 +1,16 @@
-import { Button } from "@/components/ui/button";
-import { Typography } from "@/components/ui/typography";
+import { Button } from "@/components/ui/Shadcn/Button";
+import { Typography } from "@/components/ui/Shadcn/Typography";
 import { categoryLanding } from "@/constants/landing";
 import Image from "next/image";
 
 function CategorySection() {
   return (
     <>
-      <section className="flex flex-col md:flex-row w-full gap-0">
+      <section className="w-full flex md:flex-row flex-col   gap-0 ">
         {categoryLanding.map((item, index) => (
-          <div key={index} className="relative w-full h-100 overflow-hidden">
+          <div
+            key={index}
+            className="relative flex  w-full h-100 overflow-hidden">
             <Image
               src={item.image}
               alt={item.alt}
@@ -16,7 +18,7 @@ function CategorySection() {
               className="object-cover"
             />
 
-            <div className="absolute p-3 inset-0 bg-black/40 flex flex-col items-start justify-end ">
+            <div className="absolute p-3 inset-0 bg-black/20 flex flex-col items-start justify-end ">
               <Typography
                 variant="h2"
                 className="text-3xl font-bold text-white  mb-4">
@@ -30,25 +32,30 @@ function CategorySection() {
           </div>
         ))}
       </section>
-      <section className="my-10">
-        <div className="my-10 flex flex-col justify-center items-center text-center">
+      <section className=" px-7 flex md:flex-row flex-col justify-between  w-full container my-10">
+        <div className="my-10  w-1/2 flex flex-col ">
           <Typography variant="h2" className="font-bold md:text-4xl ">
             Kids Collection
           </Typography>
           <Typography variant="p" className="text-gray-400">
-            Best collection for kids
+            Best collection for kids. Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Expedita, maxime! Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Nulla laborum vero architecto! Harum,
+            nemo itaque. Tenetur saepe autem quam ut. Lorem ipsum dolor sit amet
+            consectetur, adipisicing elit. Ipsam ab vel repellat omnis animi
+            aliquid veritatis dolorem architecto ea sit.
           </Typography>
         </div>
 
-        <div className="relative w-full h-100 overflow-hidden">
+        <div className="relative  overflow-hidden">
           <Image
-            src="/landing/kids.webp"
+            src="/landing/kids-cat.webp"
             alt="kids"
-            width={1600}
-            height={800}
+            width={700}
+            height={500}
           />
 
-          <div className="absolute p-3 inset-0 bg-black/40 flex flex-col items-start justify-end ">
+          <div className="absolute p-3 inset-0 bg-black/5 flex flex-col items-start justify-end ">
             <Typography
               variant="h3"
               className="text-3xl font-bold text-white mb-4">

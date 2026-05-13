@@ -8,15 +8,14 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuContent,
-} from "@/components/ui/navigation-menu";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
+} from "@/components/ui/Shadcn/Navigation-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/Shadcn/Sheet";
+import { Button } from "@/components/ui/Shadcn/Button";
 import { Menu } from "lucide-react";
 import { CgShoppingBag } from "react-icons/cg";
 import { BiHeart, BiSearch, BiUser } from "react-icons/bi";
 import { HEADER_LINKS, NAVIGATION_ITEMS } from "@/constants/header";
 import { NavigationItemProps, NavLink } from "@/types/layout";
-
 
 const ICON_SIZE = 20;
 const MOBILE_ICON_SIZE = 15;
@@ -92,7 +91,7 @@ const DesktopNavDropdown = ({ item }: { item: NavigationItemProps }) => (
   <NavigationMenuItem>
     <NavigationMenuTrigger>{item.category}</NavigationMenuTrigger>
     <NavigationMenuContent>
-      <div className="grid grid-cols-4 gap-2 p-6 w-[600px] border border-gray-300/30 bg-white">
+      <div className="grid grid-cols-4 gap-2 p-6 w-150 border border-gray-300/30 bg-white">
         {item.links.map((link) => (
           <Link key={link.title} href={link.href}>
             {link.title}
@@ -134,7 +133,7 @@ const MobileSheet = () => (
         <Menu />
       </Button>
     </SheetTrigger>
-    <SheetContent side="right" className="w-[300px]">
+    <SheetContent side="right" className="w-75">
       <div className="flex flex-col gap-4 mt-6">
         <MobileNavLink href="/">Home</MobileNavLink>
 

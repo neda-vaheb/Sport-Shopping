@@ -1,64 +1,89 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/Shadcn/Button";
 
 import { slidesData } from "@/constants/landing";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Typography } from "@/components/ui/typography";
+import { Loader2 } from "lucide-react"; // استفاده از آیکون لودینگ lucide-react
+import { Typography } from "@/components/ui/Shadcn/Typography";
+
+// کامپوننت جداگانه برای هر اسلاید با مدیریت لودینگ
+const SlideWithLoader: React.FC<{ slide: (typeof slidesData)[0] }> = ({
+  slide,
+}) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  return (
+    <div className="relative h-190 w-full">
+      {/* لودر */}
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 z-10">
+          <div className="flex flex-col items-center gap-2">
+            <Loader2 className="h-8 w-8 animate-spin text-gray-500" />
+            <Typography variant="small" className="text-gray-500">
+              Loading...
+            </Typography>
+          </div>
+        </div>
+      )}
+
+      {/* تصویر */}
+      <Image
+        width={1400}
+        height={700}
+        src={slide.imageUrl}
+        alt={slide.title}
+        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+          isLoading ? "opacity-0" : "opacity-100"
+        }`}
+        onLoadingComplete={() => setIsLoading(false)}
+        priority={slide.id === 1} // فقط اولین اسلاید priority داشته باشد
+        quality={85} // کاهش کیفیت برای کاهش حجم
+      />
+
+      {/* متن و دکمه روی تصویر */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 text-white">
+        <Typography variant="h2" className="mb-4 text-4xl font-bold text-white">
+          {slide.title}
+        </Typography>
+        <Typography variant="p" className="mb-6 text-xl text-white">
+          {slide.description}
+        </Typography>
+        <Link href={slide.buttonLink}>
+          <Button className="rounded-lg bg-white px-6 py-3 font-bold text-gray-500 transition hover:bg-gray-200">
+            {slide.buttonText}
+          </Button>
+        </Link>
+      </div>
+    </div>
+  );
+};
 
 const HeroSection: React.FC = () => {
   return (
     <div className="relative w-full">
       <Swiper
-        // ماژول‌های مورد نیاز
         modules={[Navigation, Pagination, Autoplay]}
-        spaceBetween={0} // فاصله بین اسلایدها
-        slidesPerView={1} // تعداد اسلاید در هر ویو
-        navigation // فعال کردن دکمه‌های قبلی/بعدی
-        pagination={{ clickable: true }} // فعال کردن دات‌های پایین اسلایدر با قابلیت کلیک
+        spaceBetween={0}
+        slidesPerView={1}
+        navigation
+        pagination={{ clickable: true }}
         autoplay={{
-          delay: 5000, // زمان تعویض خودکار اسلاید (میلی‌ثانیه)
-          disableOnInteraction: false, // بعد از کلیک کاربر، autoplay متوقف نشود
+          delay: 5000,
+          disableOnInteraction: false,
         }}
-        loop={true} // چرخش بین‌هایت اسلایدها
+        loop={true}
         className="mySwiper">
         {slidesData.map((slide) => (
           <SwiperSlide key={slide.id}>
-            {/* هر محتوایی که دوست دارید داخل اسلاید قرار دهید */}
-            <div className="relative h-160 w-full">
-              {/* تصویر پس‌زمینه */}
-              <Image
-                width={1400}
-                height={600}
-                src={slide.imageUrl}
-                alt={slide.title}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-              {/* متن و دکمه روی تصویر */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 text-white">
-                <Typography
-                  variant="h2"
-                  className="mb-4 text-4xl font-bold text-white">
-                  {slide.title}
-                </Typography>
-                <Typography variant="p" className="mb-6 text-xl text-white">
-                  {slide.description}
-                </Typography>
-                <Link href={slide.buttonLink}>
-                  <Button className="rounded-lg bg-white px-6 py-3 font-bold text-gray-500 transition hover:bg-gray-200">
-                    {slide.buttonText}
-                  </Button>
-                </Link>
-              </div>
-            </div>
+            <SlideWithLoader slide={slide} />
           </SwiperSlide>
         ))}
       </Swiper>
