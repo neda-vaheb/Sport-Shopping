@@ -6,7 +6,7 @@ import FAQSection from "../fetures/landing/FAQ";
 
 function Landing() {
   return (
-    <main className="">
+    <main>
       <HeroSection />
       <CategorySection />
       <AllCategory />

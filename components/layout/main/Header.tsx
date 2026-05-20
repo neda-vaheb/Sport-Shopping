@@ -9,7 +9,11 @@ import {
   NavigationMenuTrigger,
   NavigationMenuContent,
 } from "@/components/ui/Shadcn/Navigation-menu";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/Shadcn/Sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/Shadcn/Sheet";
 import { Button } from "@/components/ui/Shadcn/Button";
 import { Menu } from "lucide-react";
 import { CgShoppingBag } from "react-icons/cg";
@@ -75,7 +79,9 @@ const DesktopNavigation = () => (
         {NAVIGATION_ITEMS.map((item) => (
           <DesktopNavDropdown key={item.category} item={item} />
         ))}
-
+        <NavigationMenuItem className="pr-4">
+          <Link href="/">New Collection</Link>
+        </NavigationMenuItem>
         <NavigationMenuItem className="pr-4">
           <Link href="/">Contact Us</Link>
         </NavigationMenuItem>
@@ -91,7 +97,7 @@ const DesktopNavDropdown = ({ item }: { item: NavigationItemProps }) => (
   <NavigationMenuItem>
     <NavigationMenuTrigger>{item.category}</NavigationMenuTrigger>
     <NavigationMenuContent>
-      <div className="grid grid-cols-4 gap-2 p-6 w-150 border border-gray-300/30 bg-white">
+      <div className="grid grid-cols-2 gap-2 p-6 w-70 border border-gray-300/30 bg-white">
         {item.links.map((link) => (
           <Link key={link.title} href={link.href}>
             {link.title}
