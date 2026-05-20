@@ -1,11 +1,13 @@
-import React from 'react'
 
-function layout() {
+
+export default function ShopLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <div>
-      
+    <div className="flex flex-col min-h-screen">
+      <main className="grow">{children}</main>
     </div>
-  )
+  );
 }
-
-export default layout

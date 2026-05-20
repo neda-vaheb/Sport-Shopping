@@ -16,28 +16,17 @@ export type TCategoryPageProps = {
 export interface Product {
     id: string;
     name: string;
-    category: "men" | "women" | "girl" | "boy" | "sports";
-    subcategory: "clothing" | "shoes" | "soccer" | "tennis";
+    category: "men" | "women" | "kids"| "sports";
+    subcategory: "clothing" | "shoes" | "soccer" | "tennis"| "girl" | "boy";
     price: number;
     image: string;
     brand: string;
     size: number[];
     color: string;
+    isNew?: boolean; 
   }
   
 
-// =====productList=====
-
-// export type TProductListProps = TCategoryPageProps &{
-//     category:"men"|"women"|"girl"|"boy"|"sports",
-//     subCategory:"clothing"|"shoes"|"soccer"|"tennis",
-//     brand:"string",
-//     new?:boolean,
-//     url:string,
-//     src?:string,
-//     price:number,
-
-// }
 
 export interface ProductCardProps {
     product: {

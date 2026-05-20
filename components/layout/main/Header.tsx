@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/Shadcn/Button";
 import { Menu } from "lucide-react";
 import { CgShoppingBag } from "react-icons/cg";
 import { BiHeart, BiSearch, BiUser } from "react-icons/bi";
-import { HEADER_LINKS, NAVIGATION_ITEMS } from "@/constants/header";
+import { HEADER_LINKS, NAVIGATION_ITEMS } from "@/constants/layout";
 import { NavigationItemProps, NavLink } from "@/types/layout";
 
 const ICON_SIZE = 20;
@@ -45,18 +45,27 @@ const TopBarLinks = () => (
     {HEADER_LINKS.map((link, index) => (
       <TopBarLink
         key={link.title}
-        link={link}
+        title={link.title}
+        href={link.href}
         isLast={index === HEADER_LINKS.length - 1}
       />
     ))}
   </div>
 );
 
-const TopBarLink = ({ link, isLast }: { link: NavLink; isLast: boolean }) => (
+const TopBarLink = ({
+  title,
+  href,
+  isLast,
+}: {
+  title: string;
+  href: string;
+  isLast: boolean;
+}) => (
   <Link
-    href={link.href}
+    href={`/shop/${href}`}
     className={`text-gray-700 ${!isLast ? "border-l border-gray-400/50 pl-2" : ""}`}>
-    {link.title}
+    {title}
   </Link>
 );
 
@@ -80,13 +89,13 @@ const DesktopNavigation = () => (
           <DesktopNavDropdown key={item.category} item={item} />
         ))}
         <NavigationMenuItem className="pr-4">
-          <Link href="/">New Collection</Link>
+          <Link href="/newcollection">New Collection</Link>
         </NavigationMenuItem>
         <NavigationMenuItem className="pr-4">
-          <Link href="/">Contact Us</Link>
+          <Link href="/contactus">Contact Us</Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/">About Us</Link>
+          <Link href="/aboutus">About Us</Link>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
@@ -99,7 +108,9 @@ const DesktopNavDropdown = ({ item }: { item: NavigationItemProps }) => (
     <NavigationMenuContent>
       <div className="grid grid-cols-2 gap-2 p-6 w-70 border border-gray-300/30 bg-white">
         {item.links.map((link) => (
-          <Link key={link.title} href={link.href}>
+          <Link
+            key={link.title}
+            href={`/shop/${item.categorySlug}/${link.subcategorySlug}`}>
             {link.title}
           </Link>
         ))}
@@ -156,14 +167,25 @@ const MobileSheet = () => (
 );
 
 const MobileDropdown = ({ item }: { item: NavigationItemProps }) => (
-  <details>
-    <summary className="cursor-pointer">{item.category}</summary>
-    <div className="ml-4 mt-2 flex flex-col gap-2">
-      {item.links.map((link) => (
-        <MobileNavLink key={link.title} href={link.href}>
-          {link.title}
-        </MobileNavLink>
-      ))}
+  <details className="w-full">
+    <summary className="cursor-pointer font-medium py-2 text-foreground capitalize">
+      {item.category}
+    </summary>
+    <div className="ml-4 mt-1 flex flex-col gap-2 border-l pl-3 border-muted">
+      <MobileNavLink href={`/shop/${item.categorySlug}`}>
+        View All {item.category}
+      </MobileNavLink>
+
+      {item.links.map((link) => {
+        // ساخت آدرس داینامیک: /shop/men/shoes
+        const dynamicHref = `/shop/${item.categorySlug}/${link.subcategorySlug}`;
+
+        return (
+          <MobileNavLink key={link.title} href={dynamicHref}>
+            {link.title}
+          </MobileNavLink>
+        );
+      })}
     </div>
   </details>
 );

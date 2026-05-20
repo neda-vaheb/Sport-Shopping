@@ -2,13 +2,15 @@
 export type HeaderLinksProps = {
 title:string;
 href:string;
+
 }
 export type NavLink=  {
     title: string;
-    href: string;
+    subcategorySlug: string;
   }
 export type NavigationItemProps= {
     category: string;
+    categorySlug:string,
     links: NavLink[];
   }
 

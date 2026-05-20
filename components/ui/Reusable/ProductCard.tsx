@@ -15,7 +15,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { id, name, category, subcategory, price, image, brand, isNew } =
     product;
 
-  // ساخت آدرس داینامیک برای صفحه جزییات محصول
+
   const productDetailUrl = `/shop/${category}/${subcategory}/${id}`;
 
   return (
@@ -29,7 +29,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           </Badge>
         )}
 
-        {/* دکمه افزودن به علاقه‌مندی‌ها */}
+     
         <Button
           variant="secondary"
           size="icon"
@@ -37,8 +37,6 @@ export default function ProductCard({ product }: ProductCardProps) {
           aria-label="Add to wishlist">
           <Heart className="w-4 h-4 text-muted-foreground hover:text-destructive transition-colors" />
         </Button>
-
-        {/* استفاده از Image در Next.js برای بهینه‌سازی خودکار حجم عکس */}
         <Link href={productDetailUrl} className="w-full h-full block">
           <Image
             src={image}
@@ -52,7 +50,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       </CardHeader>
 
       {/* بخش جزییات متنی */}
-      <CardContent className="p-4 flex-grow flex flex-col justify-between">
+      <CardContent className="p-4 grow flex flex-col justify-between">
         <div>
           <span className="text-xs font-semibold tracking-wider text-muted-foreground uppercase">
             {brand}
@@ -60,7 +58,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <Link
             href={productDetailUrl}
             className="block mt-1 group-hover:text-primary transition-colors">
-            <h3 className="font-medium text-base text-foreground line-clamp-2 min-h-[3rem]">
+            <h3 className="font-medium text-base text-foreground line-clamp-2 min-h-12">
               {name}
             </h3>
           </Link>
@@ -76,7 +74,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
       </CardContent>
 
-      {/* بخش دکمه خرید پایین کارت */}
+  
       <CardFooter className="p-4 pt-0">
         <Button className="w-full gap-2 text-sm font-medium" size="sm">
           <ShoppingCart className="w-4 h-4" />
