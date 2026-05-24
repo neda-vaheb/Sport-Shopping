@@ -1,4 +1,4 @@
-import { Typography } from "@/components/ui/Shadcn/Typography";
+import { Typography } from "@/components/ui/Typography";
 import Image from "next/image";
 import Link from "next/link";
 import { BiMailSend, BiPhone } from "react-icons/bi";

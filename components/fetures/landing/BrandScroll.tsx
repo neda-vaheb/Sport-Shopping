@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Typography } from "@/components/ui/Shadcn/Typography";
+import { Typography } from "@/components/ui/Typography";
 import { BrandsData } from "@/constants/landing";
 import { TBrandProps, TBrandsScrollProps } from "@/types/landing";
 import HorizontalScroll from "@/components/ui/Reusable/HorizentalScroll";

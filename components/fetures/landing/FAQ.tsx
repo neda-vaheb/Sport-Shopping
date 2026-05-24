@@ -2,8 +2,8 @@
 
 import React from "react";
 import ReusableAccordion from "@/components/ui/Reusable/Accordion";
-import { Typography } from "@/components/ui/Shadcn/Typography";
-import { Button } from "@/components/ui/Shadcn/Button";
+import { Typography } from "@/components/ui/Typography";
+import { Button } from "@/components/ui/Button";
 import { HelpCircle, Mail, Phone, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 

@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { PRODUCTS_DATA } from "@/constants/Products";
-import { Button } from "@/components/ui/Shadcn/Button";
-import { Badge } from "@/components/ui/Shadcn/Badge";
+import { Button } from "@/components/ui/Button";
+import { Badge } from "@/components/ui/Badge";
 import ProductCard from "@/components/ui/Reusable/ProductCard";
-import { Typography } from "@/components/ui/Shadcn/Typography";
+import { Typography } from "@/components/ui/Typography";
 import {
   BiHeart,
   BiRotateRight,

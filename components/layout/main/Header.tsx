@@ -8,13 +8,13 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuContent,
-} from "@/components/ui/Shadcn/Navigation-menu";
+} from "@/components/ui/Navigation-menu";
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
-} from "@/components/ui/Shadcn/Sheet";
-import { Button } from "@/components/ui/Shadcn/Button";
+} from "@/components/ui/Sheet";
+import { Button } from "@/components/ui/Button";
 import { Menu } from "lucide-react";
 import { CgShoppingBag } from "react-icons/cg";
 import { BiHeart, BiSearch, BiUser } from "react-icons/bi";

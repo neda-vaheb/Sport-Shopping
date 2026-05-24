@@ -1,6 +1,6 @@
 import { PRODUCTS_DATA } from "@/constants/Products";
 import ProductCard from "@/components/ui/Reusable/ProductCard";
-import { Typography } from "@/components/ui/Shadcn/Typography";
+import { Typography } from "@/components/ui/Typography";
 
 import ProductSlider from "@/components/ui/Reusable/ProductSlider";
 
@@ -43,13 +43,13 @@ export default async function CategoryPage({ params }: Props) {
       )}
 
       {isNewProducts.length !== 0 && (
-       <ProductSlider
-       products={isNewProducts}
-       title="New Collection"
-       description="Discover our latest arrivals"
-       variant="default"
-       slidesPerView={4}
-     />
+        <ProductSlider
+          products={isNewProducts}
+          title="New Collection"
+          description="Discover our latest arrivals"
+          variant="default"
+          slidesPerView={4}
+        />
       )}
     </div>
   );

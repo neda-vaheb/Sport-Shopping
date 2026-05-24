@@ -8,11 +8,11 @@ import "swiper/css/pagination";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/Shadcn/Button";
+import { Button } from "@/components/ui/Button";
 
 import { slidesData } from "@/constants/landing";
 import { Loader2 } from "lucide-react"; // استفاده از آیکون لودینگ lucide-react
-import { Typography } from "@/components/ui/Shadcn/Typography";
+import { Typography } from "@/components/ui/Typography";
 
 // کامپوننت جداگانه برای هر اسلاید با مدیریت لودینگ
 const SlideWithLoader: React.FC<{ slide: (typeof slidesData)[0] }> = ({

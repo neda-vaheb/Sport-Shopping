@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/Shadcn/Button";
-import { Typography } from "@/components/ui/Shadcn/Typography";
+import { Button } from "@/components/ui/Button";
+import { Typography } from "@/components/ui/Typography";
 import { categoryLanding } from "@/constants/landing";
 import Image from "next/image";
 

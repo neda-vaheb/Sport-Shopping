@@ -5,8 +5,8 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/Shadcn/Accordion";
-import { Typography } from "@/components/ui/Shadcn/Typography";
+} from "@/components/ui/Accordion";
+import { Typography } from "@/components/ui/Typography";
 import { cn } from "@/lib/utils";
 import { IReusableAccordionProps } from "@/types";
 

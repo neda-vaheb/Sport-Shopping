@@ -1,4 +1,4 @@
-import { Typography } from "@/components/ui/Shadcn/Typography";
+import { Typography } from "@/components/ui/Typography";
 import { AllCategories } from "@/constants/landing";
 import Image from "next/image";
 

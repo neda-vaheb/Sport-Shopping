@@ -8,11 +8,11 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-} from "@/components/ui/Shadcn/Card";
-import { Button } from "@/components/ui/Shadcn/Button";
-import { Badge } from "@/components/ui/Shadcn/Badge";
+} from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
+import { Badge } from "@/components/ui/Badge";
 import { ProductCardProps } from "@/types/product";
-import { Typography } from "../Shadcn/Typography";
+import { Typography } from "../Typography";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import FormattedPrice from "./FormattedPrice";
@@ -179,7 +179,7 @@ export default function ProductCard({
           onClick={handleAddToCart}
           disabled={!inStock || isAddingToCart}
           className={cn(
-            "w-full gap-2 text-sm font-medium transition-all duration-300",
+            "w-full gap-2 text-sm font-medium transition-all duration-300 cursor-pointer",
             inStock
               ? "bg-gray-600 hover:bg-gray-400/50 text-white"
               : "bg-gray-300 cursor-not-allowed",
