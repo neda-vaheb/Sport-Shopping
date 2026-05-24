@@ -18,7 +18,7 @@ export const NAVIGATION_ITEMS: NavigationItemProps[] = [
       category: "Men",
       categorySlug:'men',
       links: [
-        // { title: "New Collection", href: "/products/1" },
+        // { title: "New Collection", subcategorySlug:"new-collections"},
         { title: "Shoes", subcategorySlug: "shoes" },
         { title: "Clothing", subcategorySlug: "clothing" },
         // { title: "Accessories", subcategorySlug: "/products/4" },
@@ -56,6 +56,5 @@ export const NAVIGATION_ITEMS: NavigationItemProps[] = [
         // { title: "Golf", subcategorySlug: "/products/4" },
       ],
     },
-
   ];
   

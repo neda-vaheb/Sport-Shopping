@@ -2,6 +2,8 @@ import { PRODUCTS_DATA } from "@/constants/Products";
 import ProductCard from "@/components/ui/Reusable/ProductCard";
 import { Typography } from "@/components/ui/Shadcn/Typography";
 
+import ProductSlider from "@/components/ui/Reusable/ProductSlider";
+
 interface Props {
   params: Promise<{ category: string }>;
 }
@@ -12,11 +14,18 @@ export default async function CategoryPage({ params }: Props) {
   const filteredProducts = PRODUCTS_DATA.filter(
     (product) => product.category.toLowerCase() === category.toLowerCase(),
   );
+  const isNewProducts = PRODUCTS_DATA.filter(
+    (product) =>
+      product.isNew &&
+      product.category.toLowerCase() === category.toLowerCase(),
+  );
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <header className="border-b pb-4 mb-8">
-        <Typography variant="h1" className="text-3xl font-bold text-foreground capitalize">
+      <header className="border-b border-gray-400/60 w-65 pb-4 mb-8">
+        <Typography
+          variant="h1"
+          className="text-3xl font-bold text-foreground capitalize">
           {category}
         </Typography>
       </header>
@@ -31,6 +40,16 @@ export default async function CategoryPage({ params }: Props) {
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
+      )}
+
+      {isNewProducts.length !== 0 && (
+       <ProductSlider
+       products={isNewProducts}
+       title="New Collection"
+       description="Discover our latest arrivals"
+       variant="default"
+       slidesPerView={4}
+     />
       )}
     </div>
   );

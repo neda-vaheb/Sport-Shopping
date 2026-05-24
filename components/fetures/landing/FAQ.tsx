@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import ReusableAccordion from "@/components/ui/Reusable/REAccordion";
+import ReusableAccordion from "@/components/ui/Reusable/Accordion";
 import { Typography } from "@/components/ui/Shadcn/Typography";
 import { Button } from "@/components/ui/Shadcn/Button";
 import { HelpCircle, Mail, Phone, MessageCircle } from "lucide-react";

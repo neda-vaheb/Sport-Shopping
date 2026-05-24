@@ -43,7 +43,7 @@ function Footer() {
       </div>
       <div className="flex flex-col gap-1.5">
         <Typography variant="h4" className="text-white">
-          Our Locations 
+          Our Locations
         </Typography>
         <Image
           src="/landing/location-1.webp"

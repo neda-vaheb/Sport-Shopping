@@ -19,7 +19,7 @@ import { Menu } from "lucide-react";
 import { CgShoppingBag } from "react-icons/cg";
 import { BiHeart, BiSearch, BiUser } from "react-icons/bi";
 import { HEADER_LINKS, NAVIGATION_ITEMS } from "@/constants/layout";
-import { NavigationItemProps, NavLink } from "@/types/layout";
+import { NavigationItemProps } from "@/types/layout";
 
 const ICON_SIZE = 20;
 const MOBILE_ICON_SIZE = 15;
@@ -88,9 +88,9 @@ const DesktopNavigation = () => (
         {NAVIGATION_ITEMS.map((item) => (
           <DesktopNavDropdown key={item.category} item={item} />
         ))}
-        <NavigationMenuItem className="pr-4">
-          <Link href="/newcollection">New Collection</Link>
-        </NavigationMenuItem>
+        {/* <NavigationMenuItem className="pr-4">
+          <Link href="/newcollections">New Collection</Link>
+        </NavigationMenuItem> */}
         <NavigationMenuItem className="pr-4">
           <Link href="/contactus">Contact Us</Link>
         </NavigationMenuItem>
@@ -104,7 +104,9 @@ const DesktopNavigation = () => (
 
 const DesktopNavDropdown = ({ item }: { item: NavigationItemProps }) => (
   <NavigationMenuItem>
-    <NavigationMenuTrigger>{item.category}</NavigationMenuTrigger>
+    <NavigationMenuTrigger>
+      <Link href={`/shop/${item.categorySlug}/`}>{item.category}</Link>
+    </NavigationMenuTrigger>
     <NavigationMenuContent>
       <div className="grid grid-cols-2 gap-2 p-6 w-70 border border-gray-300/30 bg-white">
         {item.links.map((link) => (
@@ -158,9 +160,9 @@ const MobileSheet = () => (
           <MobileDropdown key={item.category} item={item} />
         ))}
 
-        <MobileNavLink href="/">Contact Us</MobileNavLink>
-        <MobileNavLink href="/">About Us</MobileNavLink>
-        <MobileNavLink href="/">Sign in / Sign up</MobileNavLink>
+        <MobileNavLink href="/contactus">Contact Us</MobileNavLink>
+        <MobileNavLink href="/aboutus">About Us</MobileNavLink>
+        <MobileNavLink href="/singin">Sign in / Sign up</MobileNavLink>
       </div>
     </SheetContent>
   </Sheet>
@@ -208,7 +210,7 @@ export default function Header() {
     <header className="container">
       <TopBar />
 
-      <div className="md:px-7 flex items-center justify-between h-16">
+      <div className="md:px-7 flex items-center justify-between h-16 border-b border-gray-400/50">
         <Logo />
         <DesktopNavigation />
         <DesktopIcons />
