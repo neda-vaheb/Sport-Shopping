@@ -125,7 +125,7 @@ const HorizontalScroll = <
             {[1, 2, 3, 4].map((i) => (
               <div
                 key={i}
-                className="flex-shrink-0 w-32 h-32 bg-gray-200 animate-pulse rounded-lg"
+                className="shrink-0 w-32 h-32 bg-gray-200 animate-pulse rounded-lg"
               />
             ))}
           </div>
@@ -228,7 +228,7 @@ const HorizontalScroll = <
             centeredSlides={centeredSlides}
             grabCursor={true}
             touchRatio={1}
-            watchOverflow={true} // مخفی کردن نویگیشن وقتی اسلاید کافی نیست
+            watchOverflow={false} // مخفی کردن نویگیشن وقتی اسلاید کافی نیست
             className="horizontal-scroll-swiper">
             {items.map((item, index) => (
               <SwiperSlide key={item.id || index}>
@@ -238,45 +238,6 @@ const HorizontalScroll = <
           </Swiper>
         </div>
       </div>
-
-      <style jsx global>{`
-        .horizontal-scroll-swiper {
-          overflow: visible !important;
-          padding: 0.5rem 0;
-        }
-
-        .horizontal-scroll-swiper .swiper-slide {
-          height: auto;
-          width: auto;
-        }
-
-        /* استایل دات‌ها */
-        .horizontal-scroll-swiper .swiper-pagination {
-          position: relative;
-          margin-top: 2rem;
-          bottom: auto;
-        }
-
-        .horizontal-scroll-swiper .swiper-pagination-bullet {
-          background-color: #cbd5e1;
-          opacity: 1;
-          width: 8px;
-          height: 8px;
-          transition: all 0.3s ease;
-        }
-
-        .horizontal-scroll-swiper .swiper-pagination-bullet-active {
-          background-color: #3b82f6;
-          width: 24px;
-          border-radius: 4px;
-        }
-
-        /* اضافه کردن padding برای دیدن کامل اسلایدها */
-        .horizontal-scroll-swiper .swiper-wrapper {
-          transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-          align-items: center;
-        }
-      `}</style>
     </div>
   );
 };

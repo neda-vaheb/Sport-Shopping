@@ -19,7 +19,7 @@ const BrandsScroll: React.FC<TBrandsScrollProps> = ({
       <Link
         href={brand.href}
         className="flex flex-col items-center gap-4 group">
-        <div className="relative w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28">
+        <div className="relative  w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28">
           <Image
             src={brand.logo}
             alt={brand.alt || `${brand.name} logo`}

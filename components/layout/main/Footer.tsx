@@ -5,9 +5,9 @@ import { BiMailSend, BiPhone } from "react-icons/bi";
 
 function Footer() {
   return (
-    <div className="bg-black/90 w-full h-fit p-12 text-white flex flex-wrap justify-evenly ">
-      <div>
-        <Typography variant="h4" className="text-white">
+    <div className="bg-black/90 w-full h-fit p-12 text-white flex md:flex-row flex-col gap-10 md:justify-evenly ">
+      <div className="flex flex-col gap-1.5">
+        <Typography variant="h4" className="text-white pb-3">
           Links
         </Typography>
         <Link href="/aboutus">
@@ -42,7 +42,7 @@ function Footer() {
         </Link>
       </div>
       <div className="flex flex-col gap-1.5">
-        <Typography variant="h4" className="text-white">
+        <Typography variant="h4" className="text-white pb-2">
           Our Locations
         </Typography>
         <Image

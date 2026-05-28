@@ -21,7 +21,7 @@ const SlideWithLoader: React.FC<{ slide: (typeof slidesData)[0] }> = ({
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="relative h-190 w-full">
+    <div className="relative h-190 w-full overflow-hidden">
       {/* لودر */}
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-100 z-10">
@@ -36,19 +36,17 @@ const SlideWithLoader: React.FC<{ slide: (typeof slidesData)[0] }> = ({
 
       {/* تصویر */}
       <Image
-        width={1400}
-        height={700}
+        fill
         src={slide.imageUrl}
         alt={slide.title}
         className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
           isLoading ? "opacity-0" : "opacity-100"
         }`}
         onLoadingComplete={() => setIsLoading(false)}
-        priority={slide.id === 1} // فقط اولین اسلاید priority داشته باشد
-        quality={85} // کاهش کیفیت برای کاهش حجم
+        priority={slide.id === 1}
+        quality={85}
       />
 
-      {/* متن و دکمه روی تصویر */}
       <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 text-white">
         <Typography variant="h2" className="mb-4 text-4xl font-bold text-white">
           {slide.title}

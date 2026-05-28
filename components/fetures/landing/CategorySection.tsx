@@ -10,7 +10,7 @@ function CategorySection() {
         {categoryLanding.map((item, index) => (
           <div
             key={index}
-            className="relative flex  w-full h-100 overflow-hidden">
+            className="relative flex w-full h-100 overflow-hidden">
             <Image
               src={item.image}
               alt={item.alt}
@@ -41,13 +41,11 @@ function CategorySection() {
             Best collection for kids. Lorem ipsum dolor sit amet consectetur
             adipisicing elit. Expedita, maxime! Lorem ipsum dolor sit amet
             consectetur adipisicing elit. Nulla laborum vero architecto! Harum,
-            nemo itaque. Tenetur saepe autem quam ut. Lorem ipsum dolor sit amet
-            consectetur, adipisicing elit. Ipsam ab vel repellat omnis animi
-            aliquid veritatis dolorem architecto ea sit.
+            nemo itaque.
           </Typography>
         </div>
 
-        <div className="relative  overflow-hidden">
+        <div className="relative">
           <Image
             src="/landing/kids-cat.webp"
             alt="kids"

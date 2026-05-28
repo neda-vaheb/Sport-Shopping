@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { PRODUCTS_DATA } from "@/constants/Products";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import ProductCard from "@/components/ui/Reusable/ProductCard";
 import { Typography } from "@/components/ui/Typography";
 import {
   BiHeart,
@@ -13,6 +12,7 @@ import {
   BiSolidTruck,
 } from "react-icons/bi";
 import ProductSlider from "@/components/ui/Reusable/ProductSlider";
+import FormattedPrice from "@/components/ui/Reusable/FormattedPrice";
 
 interface ProductDetailPageProps {
   params: Promise<{
@@ -66,9 +66,9 @@ export default async function ProductDetailPage({
               {product.name}
             </Typography>
 
-            <div className="mt-4 text-2xl md:text-3xl font-bold text-foreground">
-              ${product.price.toLocaleString()}
-            </div>
+            <FormattedPrice price={product.price} >
+              {/* ${product.price.toLocaleString()} */}
+            </FormattedPrice>
 
             <Typography
               variant="p"

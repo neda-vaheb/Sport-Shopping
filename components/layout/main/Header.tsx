@@ -26,7 +26,7 @@ const MOBILE_ICON_SIZE = 15;
 
 // Components
 const TopBar = () => (
-  <div className="hidden md:px-7 md:flex md:h-10 md:justify-between md:items-center md:border-b md:bg-gray-200/25 md:border-gray-400/50">
+  <div className="hidden md:w-full md:px-7 md:flex md:h-10 md:justify-between md:items-center md:border-b md:bg-gray-200/25 md:border-gray-400/50">
     <Link href="/" className="font-bold mx-4 text-lg">
       <Image
         src="/header/top-logo.svg"
