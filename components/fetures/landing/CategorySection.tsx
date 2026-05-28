@@ -33,13 +33,15 @@ function CategorySection() {
         ))}
       </section>
       <section className=" px-7 flex md:flex-row flex-col justify-between  w-full container my-10">
-        <div className="my-10  w-1/2 flex flex-col ">
+        <div className="my-10  md:w-1/2 w-full flex flex-col ">
           <Typography variant="h2" className="font-bold md:text-4xl ">
             Kids Collection
           </Typography>
-          <Typography variant="p" className="text-gray-400">
+          <Typography variant="p" className="text-gray-400 ">
             Best collection for kids. Lorem ipsum dolor sit amet consectetur
             adipisicing elit. Expedita, maxime! Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Nulla laborum vero architecto! Harum,
+            nemo itaque. Expedita, maxime! Lorem ipsum dolor sit amet
             consectetur adipisicing elit. Nulla laborum vero architecto! Harum,
             nemo itaque.
           </Typography>

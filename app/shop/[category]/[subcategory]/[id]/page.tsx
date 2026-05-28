@@ -66,9 +66,7 @@ export default async function ProductDetailPage({
               {product.name}
             </Typography>
 
-            <FormattedPrice price={product.price} >
-              {/* ${product.price.toLocaleString()} */}
-            </FormattedPrice>
+            <FormattedPrice price={product.price} />
 
             <Typography
               variant="p"

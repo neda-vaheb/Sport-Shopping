@@ -16,6 +16,7 @@ import { Typography } from "../Typography";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import FormattedPrice from "./FormattedPrice";
+import Loader from "./Loader";
 
 export default function ProductCard({
   product,
@@ -53,7 +54,6 @@ export default function ProductCard({
     setIsAddingToCart(false);
   };
 
-  // هندل اضافه کردن به علاقه‌مندی‌ها
   const handleAddToWishlist = () => {
     setIsWishlisted(!isWishlisted);
     if (onAddToWishlist) {
@@ -97,14 +97,13 @@ export default function ProductCard({
           />
         </Button>
 
-        {/* لودر تصویر */}
         {!isImageLoaded && (
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-            <div className="w-8 h-8 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin" />
-          </div>
+          <Loader />
+          // <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+          //   <div className="w-8 h-8 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin" />
+          // </div>
         )}
 
-        {/* لینک محصول */}
         <Link href={productDetailUrl} className="w-full h-full block">
           <Image
             src={image}
@@ -121,7 +120,6 @@ export default function ProductCard({
           />
         </Link>
 
-        {/* وضعیت موجودی */}
         {!inStock && (
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center backdrop-blur-sm">
             <Badge variant="destructive" className="text-sm py-1 px-3">
@@ -131,9 +129,7 @@ export default function ProductCard({
         )}
       </CardHeader>
 
-      {/* محتوای کارت */}
       <CardContent className="p-4 grow flex flex-col justify-between">
-        {/* برند و نام محصول */}
         <div>
           <div className="flex justify-between items-start gap-2">
             <Link

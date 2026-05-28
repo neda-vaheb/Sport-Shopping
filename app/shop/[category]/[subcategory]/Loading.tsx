@@ -1,12 +1,7 @@
-import { Loader2 } from 'lucide-react'
-
+import Loader from "@/components/ui/Reusable/Loader";
 
 function Loading() {
-  return (
-    <Loader2/>
-      
-  
-  )
+  return <Loader />;
 }
 
-export default Loading
+export default Loading;
