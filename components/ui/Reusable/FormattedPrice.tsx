@@ -1,6 +1,3 @@
-// components/ui/Reusable/FormattedPrice.tsx
-"use client";
-
 import { cn } from "@/lib/utils";
 
 interface FormattedPriceProps {
@@ -9,7 +6,10 @@ interface FormattedPriceProps {
   hasDiscount?: boolean;
 }
 
-export default function FormattedPrice({ price, className }: FormattedPriceProps) {
+export default function FormattedPrice({
+  price,
+  className,
+}: FormattedPriceProps) {
   const formattedPrice = price.toLocaleString();
 
   return (
