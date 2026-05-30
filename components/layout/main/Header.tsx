@@ -9,11 +9,7 @@ import {
   NavigationMenuTrigger,
   NavigationMenuContent,
 } from "@/components/ui/Navigation-menu";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/Sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/Sheet";
 import { Button } from "@/components/ui/Button";
 import { Menu } from "lucide-react";
 import { CgShoppingBag } from "react-icons/cg";
@@ -63,7 +59,7 @@ const TopBarLink = ({
   isLast: boolean;
 }) => (
   <Link
-    href={`/shop/${href}`}
+    href={href}
     className={`text-gray-700 ${!isLast ? "border-l border-gray-400/50 pl-2" : ""}`}>
     {title}
   </Link>

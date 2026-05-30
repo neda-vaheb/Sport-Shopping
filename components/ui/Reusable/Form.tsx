@@ -32,7 +32,7 @@ export function Form<TFormValues extends FieldValues = FieldValues>({
   // فعال‌سازی react-hook-form به همراه رزولور zod
   const methods = useForm<TFormValues>({
     ...options,
-    resolver: zodResolver(schema as Parameters<typeof zodResolver>[0]) as Resolver<TFormValues>,
+    resolver: zodResolver(schema as unknown as Parameters<typeof zodResolver>[0]) as unknown as Resolver<TFormValues>,
   });
 
   return (

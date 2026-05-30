@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
 
 interface InputFieldProps extends React.InputHTMLAttributes<
