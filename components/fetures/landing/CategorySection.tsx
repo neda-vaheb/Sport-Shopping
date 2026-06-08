@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/Button";
 import { Typography } from "@/components/ui/Typography";
 import { categoryLanding } from "@/constants/landing";
 import Image from "next/image";
+import Link from "next/link";
 
 function CategorySection() {
   return (
@@ -24,10 +25,11 @@ function CategorySection() {
                 className="text-3xl font-bold text-white  mb-4">
                 {item.title}
               </Typography>
-
-              <Button className="px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-gray-200 transition">
-                {item.buttonText}
-              </Button>
+              <Link href={item.link}>
+                <Button className="px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-gray-200 transition">
+                  {item.buttonText}
+                </Button>
+              </Link>
             </div>
           </div>
         ))}
@@ -61,10 +63,11 @@ function CategorySection() {
               className="text-3xl font-bold text-white mb-4">
               Kids Collection up to 70%
             </Typography>
-
-            <Button className="px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-gray-200 transition">
-              View All
-            </Button>
+            <Link href="/shop/kids">
+              <Button className="px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-gray-200 transition">
+                View All
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

@@ -14,6 +14,7 @@ export type SlideProps = {
     buttonText: string,
     image: string,
     alt: string,
+    link:string,
   }
   export type TAllCategoriesProps = {
     id:number;

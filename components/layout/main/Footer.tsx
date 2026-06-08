@@ -15,7 +15,7 @@ function Footer() {
             About Us
           </Typography>
         </Link>
-        <Link href="/aboutus">
+        <Link href="/contactus">
           <Typography variant="p" className="text-white">
             Contact Us
           </Typography>

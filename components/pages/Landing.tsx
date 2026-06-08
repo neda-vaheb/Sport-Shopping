@@ -1,6 +1,6 @@
 import HeroSection from "@/components/fetures/landing/HeroSection";
 import CategorySection from "@/components/fetures/landing/CategorySection";
-import AllCategory from "../fetures/landing/AllCategory";
+// import AllCategory from "../fetures/landing/AllCategory";
 import BrandsScroll from "../fetures/landing/BrandScroll";
 import FAQSection from "../fetures/landing/FAQ";
 
@@ -9,7 +9,7 @@ function Landing() {
     <main className="overflow-x-hidden">
       <HeroSection />
       <CategorySection />
-      <AllCategory />
+      {/* <AllCategory /> */}
       <BrandsScroll />
       <FAQSection />
     </main>

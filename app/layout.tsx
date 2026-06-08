@@ -5,10 +5,7 @@ import Header from "@/components/layout/main/Header";
 import { Suspense } from "react";
 import { Loader2 } from "lucide-react";
 import Footer from "@/components/layout/main/Footer";
-import { Geist } from "next/font/google";
-import { cn } from "@/lib/utils";
-
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,14 +18,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={cn("h-full", "antialiased", "font-sans", geist.variable)}>
+    <html lang="en">
       <Suspense fallback={<Loader2 />}>
         <body className="min-h-full flex flex-col overflow-x-hidden">
           <Header />
           {children}
           <Footer />
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              className:
+                "bg-background text-foreground border rounded-xl text-sm font-medium",
+              duration: 4000,
+            }}
+          />
         </body>
       </Suspense>
     </html>

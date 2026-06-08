@@ -94,7 +94,7 @@ export default async function ProductDetailPage({
               </div>
             )}
             <div className="flex flex-col sm:flex-row gap-4 pt-10  border-t border-gray-400">
-              <Button className="flex-1 h-12 gap-2 text-base cursor-pointer font-medium bg-gray-400/50 hover:bg-gray-300/50 hover:trnsition-all">
+              <Button className="flex-1 h-12 gap-2 text-base cursor-pointer font-medium bg-gray-500 hover:bg-gray-300/50 hover:trnsition-all">
                 <BiShoppingBag className="w-5 h-5" />
                 Add to Cart
               </Button>

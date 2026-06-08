@@ -178,7 +178,7 @@ export default function ProductCard({
             "w-full gap-2 text-sm font-medium transition-all duration-300 cursor-pointer",
             inStock
               ? "bg-gray-600 hover:bg-gray-400/50 text-white"
-              : "bg-gray-300 cursor-not-allowed",
+              : "bg-gray-500 cursor-not-allowed",
           )}
           size="sm">
           {isAddingToCart ? (

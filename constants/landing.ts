@@ -6,24 +6,24 @@ export const slidesData: SlideProps[] = [
       title: "Online Shop",
       description: "You Can Find The Best",
       imageUrl: "/landing/s-1.webp", 
-      buttonText: "shopping",
-      buttonLink: "/products",
+      buttonText: "Shopping Now",
+      buttonLink: "/shop/men",
     },
     {
       id: 2,
       title: "Shopping Now",
       description: "Sale Up To 50%",
       imageUrl: "/landing/s-2.webp",
-      buttonText: "shopping Now",
-      buttonLink: "/products",
+      buttonText: "Shopping Now",
+      buttonLink: "/shop/women",
     },
     {
       id: 3,
       title: "Explor Now",
       description: "Sale Up To 70%",
       imageUrl: "/landing/kids-s1.webp",
-      buttonText: "shopping Now",
-      buttonLink: "/products",
+      buttonText: "Shopping Now",
+      buttonLink: "/shop/kids",
     },
    
   ];
@@ -35,12 +35,14 @@ export const slidesData: SlideProps[] = [
       buttonText: "Shop Now",
       image: "/landing/sports.webp",
       alt: "sports image",
+      link:"/shop/sports"
     },
     {
       title: "Fashion Collection",
       buttonText: "Explore",
       image: "/landing/clothes.webp",
       alt: "clothes image",
+       link:"/shop"
     },
     // {
     //   title: "Fashion Collection",
