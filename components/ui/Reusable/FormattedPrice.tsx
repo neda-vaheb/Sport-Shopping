@@ -10,7 +10,7 @@ export default function FormattedPrice({
   price,
   className,
 }: FormattedPriceProps) {
-  const formattedPrice = price.toLocaleString();
+  const formattedPrice = price;
 
   return (
     <span className={cn("text-lg font-bold", className)}>

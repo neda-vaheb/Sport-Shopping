@@ -19,8 +19,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Suspense fallback={<Loader2 />}>
-        <body className="min-h-full flex flex-col overflow-x-hidden">
+      <body className="min-h-full flex flex-col overflow-x-hidden">
+        <Suspense fallback={<Loader2 />}>
           <Header />
           {children}
           <Footer />
@@ -32,8 +32,8 @@ export default function RootLayout({
               duration: 4000,
             }}
           />
-        </body>
-      </Suspense>
+        </Suspense>
+      </body>
     </html>
   );
 }

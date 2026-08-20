@@ -3,7 +3,7 @@ import { HeaderLinksProps, NavigationItemProps } from "@/types/layout";
 export const HEADER_LINKS :HeaderLinksProps[]=[
   {
 title:"Sing in",
-href:"/singin"
+href:"/auth"
 },
 {title:"Join us",
     href:"/joinus"
