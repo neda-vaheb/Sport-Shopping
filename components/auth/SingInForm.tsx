@@ -1,4 +1,5 @@
-import { SendMockOTp, VerifyMockOtp } from "@/lib/auth/mock-auth";
+"use client"
+
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -20,7 +21,7 @@ export const SingInForm = () => {
   const [isSending, setIsSending] = useState(false);
   const [isVerify, setISVerify] = useState(false);
   const [remindingSecond, setRemindingSecond] = useState(RESEND_SECOND);
-
+const [generatedOtp, setGeneratedOtp] = useState("");
   useEffect(() => {
     if (step !== "otp" || remindingSecond <= 0) {
       return;
@@ -45,100 +46,87 @@ export const SingInForm = () => {
     setPhoneError("");
     return true;
   };
-  const handelSendOtp = async () => {
-    if (!validatePhone()) {
-      return;
-    }
-    setIsSending(true);
-    try {
-      const fullPhone = `${countryCode}${phone}`;
-      const response = await VerifyMockOtp(fullPhone, otp);
-      if (!response.success) {
-        toast.error(response.message);
-        return;
-      }
-      setStep("otp");
-      setOtp("");
-      setRemindingSecond(RESEND_SECOND);
-      toast.success("Verification code sent");
-    } catch {
-      toast.error("Something went wrong");
-    } finally {
-      setIsSending(false);
-    }
-  };
+ const handelSendOtp = async () => {
+  if (!validatePhone()) {
+    return;
+  }
+
+  setIsSending(true);
+
+  try {
+    // const fullPhone = `${countryCode}${phone}`;
+
+    // Generate random 6-digit OTP
+    const randomOtp = Math.floor(100000 + Math.random() * 900000).toString();
+
+    setGeneratedOtp(randomOtp);
+
+    setStep("otp");
+    setOtp("");
+    setRemindingSecond(RESEND_SECOND);
+
+    toast.success(`Your verification code is: ${randomOtp}`, {
+      duration: 5000,
+    });
+  } catch {
+    toast.error("Something went wrong");
+  } finally {
+    setIsSending(false);
+  }
+};
   const handleVerifyOtp = async () => {
-    if (otp.length !== 6) {
-      toast.error("Invalid verification code"); //why can't use description
+  if (otp.length !== 6) {
+    toast.error("Please enter the 6-digit verification code");
+    return;
+  }
 
+  setISVerify(true);
+
+  try {
+    if (otp !== generatedOtp) {
+      toast.error("Invalid verification code");
+      setOtp("");
       return;
     }
 
-    setISVerify(true);
+    toast.success("Welcome back!");
 
-    try {
-      const fullPhone = `${countryCode}${phone}`;
-
-      const response = await VerifyMockOtp(fullPhone, otp);
-
-      if (!response.success) {
-        toast.error("Verification failed");
-
-        setOtp("");
-        return;
-      }
-
-      toast.success("Welcome back!");
-
-      /**
-       * In a real application:
-       * - Store authentication/session
-       * - Refresh user state
-       * - Redirect
-       */
-      router.push("/account");
-    } catch {
-      toast.error("Verification failed");
-    } finally {
-      setISVerify(false);
-    }
-  };
+    router.push("/");
+  } catch {
+    toast.error("Verification failed");
+  } finally {
+    setISVerify(false);
+  }
+};
 
   /**
    * Resend OTP
    */
-  async function handleResend() {
-    if (remindingSecond > 0 || isSending) {
-      return;
-    }
-
-    setIsSending(true);
-
-    try {
-      const fullPhone = `${countryCode}${phone}`;
-
-      const response = await SendMockOTp(fullPhone);
-
-      if (!response.success) {
-        toast.error(response.message);
-        return;
-      }
-
-      setRemindingSecond(RESEND_SECOND);
-      setOtp("");
-
-      toast.success("New code sent");
-
-      //   if (process.env.NODE_ENV === "development" && response.otp) {
-      //     toast.info("Development OTP";
-      //   }
-    } catch {
-      toast.error("Could not resend code");
-    } finally {
-      setIsSending(false);
-    }
+ async function handleResend() {
+  if (remindingSecond > 0 || isSending) {
+    return;
   }
 
+  setIsSending(true);
+
+  try {
+    const randomOtp = Math.floor(
+      100000 + Math.random() * 900000
+    ).toString();
+
+    setGeneratedOtp(randomOtp);
+    setRemindingSecond(RESEND_SECOND);
+    setOtp("");
+
+    toast.success(`Your new verification code is: ${randomOtp}`, {
+      duration: 5000,
+    });
+  } catch {
+    toast.error("Could not resend code");
+  } finally {
+    setIsSending(false);
+  }
+}
   /**
    * Change phone number
    */
@@ -218,7 +206,6 @@ export const SingInForm = () => {
                 <p className="mx-auto mt-2 max-w-xs text-sm leading-6 text-muted-foreground">
                   Enter the 6-digit code we sent to
                 </p>
-
                 <p className="mt-1 font-medium">
                   {countryCode} {phone}
                 </p>

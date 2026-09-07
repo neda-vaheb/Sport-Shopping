@@ -39,17 +39,20 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
             <SelectItem value="+90">🇹🇷 +90</SelectItem>
           </SelectContent>
         </Select>
-        <Input
-          id="phone"
-          type="tel"
-          inputMode="numeric"
-          autoComplete="tell"
-          placeholder="912 998 9934"
-          value={phone}
-          onChange={(event) => event.target.value.replace(/\D/g, "")}
-          aria-invalid={!!error}
-          className="h-10"
-        />
+        <Input 
+  id="phone" 
+  type="tel" 
+  inputMode="numeric" 
+  autoComplete="tel"
+  placeholder="912 998 9934" 
+  value={phone} 
+  onChange={(event) => {
+    const value = event.target.value.replace(/\D/g, "");
+    onphoneChange(value);
+  }}
+  aria-invalid={!!error} 
+  className="h-10" 
+/>
       </div>
       {error && (
         <p className="text-sm text-destructive" role="alert">
