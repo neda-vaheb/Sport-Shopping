@@ -2,12 +2,28 @@ import { HeaderLinksProps, NavigationItemProps } from "@/types/layout";
 
 export const HEADER_LINKS :HeaderLinksProps[]=[
   {
-title:"Sing in",
-href:"/sing-in"
-},
-{title:"Join us",
-    href:"/joinus"
-},
+    title: "Sign in",
+    href: "/sign-in"
+  },
+  { title: "Join us",
+    href: "/joinus"
+  },
+{
+title:"Help",
+href:"/help"
+}
+]
+export const UserHEADER_LINKS :HeaderLinksProps[]=[
+  {
+    title: "Account",
+    href: "/account"
+  },
+  { title: "Sign out",
+    href: "/logout"
+  },
+  { title: "Join us",
+    href: "/joinus"
+  },
 {
 title:"Help",
 href:"/help"

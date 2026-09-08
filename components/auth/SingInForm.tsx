@@ -21,16 +21,25 @@ export const SingInForm = () => {
   const [isSending, setIsSending] = useState(false);
   const [isVerify, setISVerify] = useState(false);
   const [remindingSecond, setRemindingSecond] = useState(RESEND_SECOND);
-const [generatedOtp, setGeneratedOtp] = useState("");
-  useEffect(() => {
-    if (step !== "otp" || remindingSecond <= 0) {
-      return;
-    }
-    const timer = setInterval(() => {
-      setRemindingSecond((current) => current - 1);
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [step, remindingSecond]);
+
+useEffect(() => {
+  if (step !== "otp") {
+    return;
+  }
+
+  const timer = setInterval(() => {
+    setRemindingSecond((current) => {
+      if (current <= 1) {
+        clearInterval(timer);
+        return 0;
+      }
+
+      return current - 1;
+    });
+  }, 1000);
+
+  return () => clearInterval(timer);
+}, [step]);
 
   const validatePhone = () => {
     if (!phone) {
@@ -46,7 +55,7 @@ const [generatedOtp, setGeneratedOtp] = useState("");
     setPhoneError("");
     return true;
   };
- const handelSendOtp = async () => {
+  const handelSendOtp = async () => {
   if (!validatePhone()) {
     return;
   }
@@ -54,44 +63,75 @@ const [generatedOtp, setGeneratedOtp] = useState("");
   setIsSending(true);
 
   try {
-    // const fullPhone = `${countryCode}${phone}`;
+    const fullPhone = `${countryCode}${phone}`;
 
-    // Generate random 6-digit OTP
-    const randomOtp = Math.floor(100000 + Math.random() * 900000).toString();
+    const response = await fetch("/api/auth/send-otp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        phone: fullPhone,
+      }),
+    });
 
-    setGeneratedOtp(randomOtp);
+    const data = await response.json();
+
+    if (!response.ok) {
+      toast.error(data.message);
+      return;
+    }
+
+    // فقط برای development
+    if (data.otp) {
+      toast.success(`Your verification code is: ${data.otp}`, {
+        duration: 5000,
+      });
+    }
 
     setStep("otp");
     setOtp("");
     setRemindingSecond(RESEND_SECOND);
-
-    toast.success(`Your verification code is: ${randomOtp}`, {
-      duration: 5000,
-    });
   } catch {
-    toast.error("Something went wrong");
+    toast.error("Could not send verification code");
   } finally {
     setIsSending(false);
   }
 };
-  const handleVerifyOtp = async () => {
-  if (otp.length !== 6) {
-    toast.error("Please enter the 6-digit verification code");
+const handleVerifyOtp = async () => {
+  if (otp.length !== 4) {
+    toast.error("Please enter the 4-digit verification code");
     return;
   }
 
   setISVerify(true);
 
   try {
-    if (otp !== generatedOtp) {
-      toast.error("Invalid verification code");
+    const fullPhone = `${countryCode}${phone}`;
+
+    const response = await fetch("/api/auth/verify-otp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        phone: fullPhone,
+        otp,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      toast.error(data.message || "Invalid verification code");
       setOtp("");
       return;
     }
 
     toast.success("Welcome back!");
 
-    router.push("/");
+    router.push("/dashboard");
+    router.refresh();
   } catch {
     toast.error("Verification failed");
   } finally {
@@ -102,7 +142,7 @@ const [generatedOtp, setGeneratedOtp] = useState("");
   /**
    * Resend OTP
    */
- async function handleResend() {
+async function handleResend() {
   if (remindingSecond > 0 || isSending) {
     return;
   }
@@ -110,17 +150,38 @@ const [generatedOtp, setGeneratedOtp] = useState("");
   setIsSending(true);
 
   try {
-    const randomOtp = Math.floor(
-      100000 + Math.random() * 900000
-    ).toString();
+    const fullPhone = `${countryCode}${phone}`;
 
-    setGeneratedOtp(randomOtp);
-    setRemindingSecond(RESEND_SECOND);
-    setOtp("");
-
-    toast.success(`Your new verification code is: ${randomOtp}`, {
-      duration: 5000,
+    const response = await fetch("/api/auth/send-otp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        phone: fullPhone,
+      }),
     });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      toast.error(data.message || "Could not resend code");
+      return;
+    }
+
+    // فقط برای development
+    if (data.otp) {
+      toast.success(
+        `Your new verification code is: ${data.otp}`,
+        {
+          duration: 5000,
+        }
+      );
+    }
+
+    setOtp("");
+    setRemindingSecond(RESEND_SECOND);
+
   } catch {
     toast.error("Could not resend code");
   } finally {
@@ -143,7 +204,7 @@ const [generatedOtp, setGeneratedOtp] = useState("");
           {/* Logo */}
           <div className="mb-8 flex items-center justify-center">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-foreground text-background">
-              <span className="text-lg font-bold">S</span>
+              <span className="text-lg font-bold">N</span>
             </div>
           </div>
 
@@ -204,7 +265,7 @@ const [generatedOtp, setGeneratedOtp] = useState("");
                 </h1>
 
                 <p className="mx-auto mt-2 max-w-xs text-sm leading-6 text-muted-foreground">
-                  Enter the 6-digit code we sent to
+                  Enter the 3-digit code we sent to
                 </p>
                 <p className="mt-1 font-medium">
                   {countryCode} {phone}
@@ -214,7 +275,7 @@ const [generatedOtp, setGeneratedOtp] = useState("");
               <div className="space-y-6">
                 <div className="flex justify-center">
                   <InputOTP
-                    maxLength={6}
+                    maxLength={4}
                     value={otp}
                     onChange={setOtp}
                     onComplete={handleVerifyOtp}
@@ -225,8 +286,8 @@ const [generatedOtp, setGeneratedOtp] = useState("");
                       <InputOTPSlot index={1} />
                       <InputOTPSlot index={2} />
                       <InputOTPSlot index={3} />
-                      <InputOTPSlot index={4} />
-                      <InputOTPSlot index={5} />
+
+                  
                     </InputOTPGroup>
                   </InputOTP>
                 </div>
@@ -235,7 +296,7 @@ const [generatedOtp, setGeneratedOtp] = useState("");
                   type="button"
                   className="h-11 w-full"
                   onClick={handleVerifyOtp}
-                  disabled={isVerify || otp.length !== 6}>
+                  disabled={isVerify || otp.length !== 4}>
                   {isVerify ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -247,23 +308,24 @@ const [generatedOtp, setGeneratedOtp] = useState("");
                 </Button>
 
                 <div className="text-center">
-                  {remindingSecond > 0 ? (
-                    <p className="text-sm text-muted-foreground">
-                      Resend code in{" "}
-                      <span className="font-medium text-foreground">
-                        {remindingSecond}s
-                      </span>
-                    </p>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={handleResend}
-                      disabled={isSending}
-                      className="inline-flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary disabled:opacity-50">
-                      <RefreshCw className="h-4 w-4" />
-                      Resend code
-                    </button>
-                  )}
+                {remindingSecond > 0 ? (
+  <p className="text-sm text-muted-foreground">
+    Resend code in{" "}
+    <span className="font-medium text-foreground">
+      {remindingSecond}s
+    </span>
+  </p>
+) : (
+  <button
+    type="button"
+    onClick={handleResend}
+    disabled={isSending}
+    className="inline-flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary disabled:opacity-50"
+  >
+    <RefreshCw className="h-4 w-4" />
+    {isSending ? "Sending..." : "Resend code"}
+  </button>
+)}
                 </div>
               </div>
             </div>

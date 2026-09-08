@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
-import Header from "@/components/layout/main/Header";
+
 import { Suspense } from "react";
 import { Loader2 } from "lucide-react";
 import Footer from "@/components/layout/main/Footer";
 import { Toaster } from "react-hot-toast";
+import HeaderWrapper from "@/components/layout/main/HeaderWrapper";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="min-h-full flex flex-col overflow-x-hidden">
         <Suspense fallback={<Loader2 />}>
-          <Header />
+          <HeaderWrapper />
           {children}
           <Footer />
           <Toaster

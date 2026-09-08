@@ -1,5 +1,7 @@
+// lib/auth/session.ts
 
-import { SignJWT, jwtVerify } from "jose"
+import { SignJWT, jwtVerify } from "jose";
+
 const secret = new TextEncoder().encode(
   process.env.AUTH_SECRET
 );
